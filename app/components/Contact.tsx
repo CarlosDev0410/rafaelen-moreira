@@ -5,9 +5,9 @@ import { MessageCircle, MapPin, Instagram, Mail } from "lucide-react";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-primary-dark text-white relative overflow-hidden">
+    <section id="contact" className="py-24 bg-primary-dark text-white relative overflow-hidden" aria-label="Contato">
       {/* Background Pattern */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[16px_16px]" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -30,6 +30,7 @@ export default function Contact() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-white text-primary-dark px-8 py-4 rounded-full font-bold text-lg hover:bg-green-50 transition-all shadow-lg transform hover:-translate-y-1"
+              aria-label="Agendar via WhatsApp"
             >
               <MessageCircle className="h-6 w-6" />
               Agendar via WhatsApp
@@ -61,7 +62,12 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="font-bold text-xl mb-1">Instagram</h4>
-                <a href="https://instagram.com/rafah_nutrii" target="_blank" className="text-green-100 hover:text-white underline decoration-green-100/50">
+                <a 
+                  href="https://instagram.com/rafah_nutrii" 
+                  target="_blank" 
+                  className="text-green-100 hover:text-white underline decoration-green-100/50"
+                  aria-label="Visitar Instagram"
+                >
                   @rafah_nutrii
                 </a>
               </div>
@@ -73,7 +79,11 @@ export default function Contact() {
               </div>
               <div>
                 <h4 className="font-bold text-xl mb-1">E-mail</h4>
-                <a href="mailto:contato@rafaelenmoreira.com" className="text-green-100 hover:text-white underline decoration-green-100/50">
+                <a 
+                  href="mailto:contato@rafaelenmoreira.com" 
+                  className="text-green-100 hover:text-white underline decoration-green-100/50"
+                  aria-label="Enviar e-mail para contato"
+                >
                   rafarafaelen@gmail.com
                 </a>
               </div>

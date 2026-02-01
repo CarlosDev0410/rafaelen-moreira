@@ -7,7 +7,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex items-center pt-40 overflow-hidden bg-gradient-to-br from-background via-green-50/30 to-background-alt"
+      className="relative min-h-[90vh] flex items-center pt-40 overflow-hidden bg-linear-to-br from-background via-green-50/30 to-background-alt"
+      aria-label="Introdução"
     >
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-b from-primary-light/20 to-transparent -z-10 blur-3xl opacity-50" />
@@ -40,12 +41,14 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-semibold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all text-center"
+              aria-label="Agendar consulta via WhatsApp"
             >
               Agendar Consulta
             </a>
             <a
               href="#about"
               className="px-8 py-4 bg-white border border-gray-200 text-secondary hover:text-primary hover:border-primary rounded-full font-semibold shadow-sm hover:shadow-md transition-all text-center"
+              aria-label="Saiba mais sobre a nutricionista"
             >
               Saiba Mais
             </a>
@@ -81,8 +84,9 @@ export default function Hero() {
                 fill
                 className="object-cover object-left"
                 priority
+                sizes="(max-width: 768px) 100vw, 50vw"
              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent" />
            </div>
 
            {/* Floating Card */}

@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rafaelen Moreira - Nutricionista
 
-## Getting Started
+Projeto de Landing Page para a nutricionista Rafaelen Moreira, focado em alta conversão e design premium ("Clean Luxury"). Desenvolvido com **Next.js**, **Tailwind CSS** e **TypeScript**.
 
-First, run the development server:
+## 🚀 Tecnologias
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
+- **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
+- **Ícones:** [Lucide React](https://lucide.dev/)
+- **Animações:** [Framer Motion](https://www.framer.com/motion/)
+
+## ✨ Funcionalidades
+
+- **Design Premium:** Paleta de cores personalizada (Verde Esmeralda, Cinza e Dourado) transmitindo saúde e sofisticação.
+- **Navegação Responsiva:** Menu adaptável para mobile e desktop com efeito Glassmorphism.
+- **Integração WhatsApp:** Botões de CTA (Call to Action) e botão flutuante direcionando para o WhatsApp Profissional.
+- **Páginas:**
+  - **Home:** Hero section, Resumo Sobre, Especialidades, Depoimentos e Contato.
+  - **Sobre:** Página detalhada com biografia e metodologia de trabalho.
+- **SEO Otimizado:** Estrutura semântica e meta tags configuradas.
+
+## 📂 Estrutura do Projeto
+
+```
+rafaelen-moreira/
+├── app/
+│   ├── components/      # Componentes reutilizáveis (Header, Hero, etc.)
+│   ├── sobre/           # Página interna "Sobre Mim"
+│   ├── globals.css      # Variáveis globais e configurações do Tailwind
+│   ├── layout.tsx       # Layout principal (Fontes e Metadados)
+│   └── page.tsx         # Página Inicial (Landing Page)
+├── public/              # Imagens e ativos estáticos
+└── ...config files
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Como Executar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Instale as dependências:**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. **Inicie o servidor de desenvolvimento:**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Acesse o projeto:**
+   Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Design System
 
-## Deploy on Vercel
+- **Fontes:** `Playfair Display` (Títulos) e `Montserrat` (Corpo).
+- **Cores Principais:**
+  - Primary: Emerald Green (`#10B981`)
+  - Accent: Gold (`#D4AF37`)
+  - Background: White / Off-white
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Licença
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Este projeto é de uso exclusivo da nutricionista Rafaelen Moreira.

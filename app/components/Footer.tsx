@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Facebook, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -15,10 +15,19 @@ export default function Footer() {
           </div>
 
           <div className="flex gap-6">
-            <a href="https://instagram.com/rafah_nutrii" target="_blank" className="text-gray-400 hover:text-primary transition-colors">
+            <a 
+              href="https://instagram.com/rafah_nutrii" 
+              target="_blank" 
+              className="text-gray-400 hover:text-primary transition-colors"
+              aria-label="Instagram"
+            >
               <Instagram className="h-6 w-6" />
             </a>
-            <a href="https://wa.me/552175047225" className="text-gray-400 hover:text-primary transition-colors">
+            <a 
+              href="https://wa.me/552175047225" 
+              className="text-gray-400 hover:text-primary transition-colors"
+              aria-label="WhatsApp"
+            >
               <MessageCircle className="h-6 w-6" />
             </a>
           </div>
