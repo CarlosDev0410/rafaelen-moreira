@@ -31,7 +31,7 @@ export default function BenefitsSection() {
               viewport={{ once: true }}
               className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-primary"
             >
-              <div className="flex items-start gap-6">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 text-center md:text-left">
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center shrink-0">
                   <Trophy className="text-primary" size={32} />
                 </div>
@@ -52,7 +52,7 @@ export default function BenefitsSection() {
               transition={{ delay: 0.1 }}
               className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-500"
             >
-              <div className="flex items-start gap-6">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 text-center md:text-left">
                 <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center shrink-0">
                   <Users className="text-green-600" size={32} />
                 </div>
@@ -86,7 +86,7 @@ export default function BenefitsSection() {
               transition={{ delay: 0.2 }}
               className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-amber-500"
             >
-              <div className="flex items-start gap-6">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 text-center md:text-left">
                 <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center shrink-0">
                   <Heart className="text-amber-600" size={32} />
                 </div>

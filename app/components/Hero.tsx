@@ -37,7 +37,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative h-[450px] w-full order-2 md:order-2"
+            className="relative h-[450px] w-full order-2 md:order-2 hidden md:block"
           >
             {/* Main Image Container */}
             <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
