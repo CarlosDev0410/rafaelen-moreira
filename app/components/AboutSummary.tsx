@@ -14,7 +14,7 @@ export default function AboutSummary() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white overflow-hidden">
+    <section id="about" className="py-25 bg-white overflow-hidden">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center gap-16">
           {/* Image Side - visible on mobile too */}

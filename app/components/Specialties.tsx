@@ -1,19 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Scale, Heart, Apple, Dumbbell } from "lucide-react";
+import { Scale, Heart, Apple, Weight } from "lucide-react";
 
 export default function Specialties() {
   const specialties = [
     {
       icon: Scale,
       title: "Emagrecimento",
-      desc: "Perda de peso saudável e definitiva, sem efeito sanfona e comendo o que gosta.",
+      desc: "Elimine peso de forma estratégica e sem restrições severas. Foque em resultados reais e definitivos através de uma rotina alimentar leve e sustentável.",
     },
     {
-      icon: Dumbbell,
-      title: "Nutrição Esportiva",
-      desc: "Melhore sua performance nos treinos e otimize o ganho de massa muscular.",
+      icon: Weight,
+      title: "Ganho de Peso",
+      desc: "Construa massa magra e ganhe corpo com qualidade. Um plano focado em hipertrofia e saúde para quem deseja resultados sólidos e sem acúmulo de gordura.",
     },
     {
       icon: Heart,

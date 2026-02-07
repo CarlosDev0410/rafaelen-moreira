@@ -1,0 +1,730 @@
+"use client";
+
+import React from "react";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import Image from "next/image";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { 
+  CheckCircle2, 
+  Calendar, 
+  Users, 
+  Clock, 
+  Trophy, 
+  Sparkles,
+  Medal,
+  Apple,
+  TrendingDown,
+  MessageCircle,
+  Heart,
+  Target,
+  Zap,
+  Shield,
+  Star,
+  ArrowRight,
+  HelpCircle
+} from "lucide-react";
+import { inscricaoSchema, type InscricaoInput } from "@/lib/schemas";
+import { registrarInscricao } from "@/app/actions/inscricoes";
+
+export default function MissaoFitPage() {
+  const [showSuccess, setShowSuccess] = React.useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<InscricaoInput>({
+    resolver: zodResolver(inscricaoSchema),
+  });
+
+  const mutation = useMutation({
+    mutationFn: registrarInscricao,
+    onSuccess: (response) => {
+      if (response.success) {
+        reset();
+        setShowSuccess(true);
+      } else {
+        alert(response.error);
+      }
+    },
+    onError: () => {
+      alert("Ocorreu um erro ao processar sua inscrição. Tente novamente.");
+    },
+  });
+
+  const onSubmit = (data: InscricaoInput) => {
+    mutation.mutate(data);
+  };
+
+  const vagasRestantes = 15;
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 overflow-hidden bg-linear-to-br from-green-50/50 via-white to-primary/5">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-linear-to-bl from-primary/10 to-transparent -z-10" />
+        
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            {/* Limited Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex items-center justify-center gap-2 mb-6"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-full font-bold text-sm shadow-lg">
+                <Sparkles size={16} />
+                APENAS {vagasRestantes} VAGAS DISPONÍVEIS
+              </div>
+            </motion.div>
+
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-center mb-8"
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-4">
+                Missão <span className="text-primary italic">FIT</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-secondary-light max-w-3xl mx-auto">
+                6 semanas para transformar seu corpo e criar hábitos saudáveis que duram para sempre
+              </p>
+            </motion.div>
+
+            {/* Event Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="relative h-[400px] w-full rounded-3xl overflow-hidden shadow-2xl mb-12"
+            >
+              <Image
+                src="/missao-fit.png"
+                alt="Missão FIT - Grupo de Emagrecimento"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+              
+              {/* Overlay Stats */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl text-center">
+                    <Calendar className="mx-auto mb-2 text-primary" size={24} />
+                    <p className="font-bold text-secondary">6 Semanas</p>
+                    <p className="text-xs text-gray-600">Duração</p>
+                  </div>
+                  <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl text-center">
+                    <Users className="mx-auto mb-2 text-primary" size={24} />
+                    <p className="font-bold text-secondary">15 Vagas</p>
+                    <p className="text-xs text-gray-600">Limitadas</p>
+                  </div>
+                  <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl text-center">
+                    <Clock className="mx-auto mb-2 text-primary" size={24} />
+                    <p className="font-bold text-secondary">100% Online</p>
+                    <p className="text-xs text-gray-600">Pelo WhatsApp</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* What's Included */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-white rounded-2xl shadow-lg p-8 mb-12"
+            >
+              <h2 className="text-3xl font-bold text-secondary mb-6 text-center">
+                O que está incluído no <span className="text-primary">Missão FIT</span>
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Apple className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Plano Alimentar Personalizado</h3>
+                    <p className="text-gray-600 text-sm">Cardápio adaptado às suas necessidades e preferências</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <TrendingDown className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Desafios Diários</h3>
+                    <p className="text-gray-600 text-sm">Atividades práticas para te manter motivado(a)</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <MessageCircle className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Acompanhamento Semanal</h3>
+                    <p className="text-gray-600 text-sm">Suporte exclusivo da nutricionista Rafaelen</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Trophy className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Receitas Exclusivas</h3>
+                    <p className="text-gray-600 text-sm">Novas receitas saudáveis toda semana</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Users className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Grupo de Apoio</h3>
+                    <p className="text-gray-600 text-sm">Comunidade engajada e motivadora</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Medal className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Certificado de Conclusão</h3>
+                    <p className="text-gray-600 text-sm">Para quem completar o programa</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Para Quem É Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <Target className="text-primary" size={20} />
+                <span className="text-primary font-semibold text-sm">PÚBLICO-ALVO</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+                Este Grupo Foi Feito Para Você?
+              </h2>
+              <p className="text-lg text-secondary-light max-w-2xl mx-auto">
+                O <strong className="text-primary">Missão FIT</strong> é ideal para mulheres entre <strong>18 e 60 anos</strong> que desejam:
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Emagrecer de Forma Saudável</h3>
+                    <p className="text-gray-600 text-sm">Sem dietas radicais, sem sofrimento. Apenas resultados sustentáveis e duradouros.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Shield className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Ter Disciplina e Acompanhamento</h3>
+                    <p className="text-gray-600 text-sm">Com suporte profissional da nutricionista Rafaelen a cada passo.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-gradient-to-br from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Users className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Fazer Parte de um Grupo Motivador</h3>
+                    <p className="text-gray-600 text-sm">Mulheres com o mesmo objetivo, trocando experiências e se apoiando diariamente.</p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-gradient-to-br from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <Star className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-secondary mb-2">Transformar Seu Estilo de Vida</h3>
+                    <p className="text-gray-600 text-sm">Criar hábitos saudáveis que vão além das 6 semanas do programa.</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mt-8 p-6 bg-green-50 border-l-4 border-primary rounded-r-2xl"
+            >
+              <p className="text-secondary font-semibold text-center">
+                <span className="text-primary">✓</span> Se você se identificou, este grupo foi feito para VOCÊ!
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Por Que Participar Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <Zap className="text-primary" size={20} />
+                <span className="text-primary font-semibold text-sm">RESULTADOS COMPROVADOS</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+                Por Que Você Deve Participar?
+              </h2>
+            </motion.div>
+
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-primary"
+              >
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center shrink-0">
+                    <Trophy className="text-primary" size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-secondary mb-3">Grupos de Emagrecimento Funcionam MUITO Mais Rápido</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Quando você faz parte de um grupo com o mesmo objetivo, o <strong>incentivo mútuo acelera seus resultados</strong>. 
+                      Ver outras mulheres conquistando suas metas te motiva a não desistir nos dias difíceis.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-green-500"
+              >
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center shrink-0">
+                    <Users className="text-green-600" size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-secondary mb-3">Você NÃO Estará Sozinha Nessa Jornada</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Ao contrário de tentar emagrecer sozinha, no <strong>Missão FIT</strong> você terá:
+                    </p>
+                    <ul className="mt-4 space-y-2">
+                      <li className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle2 className="text-primary shrink-0" size={20} />
+                        <span>Apoio diário da nutricionista Rafaelen</span>
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle2 className="text-primary shrink-0" size={20} />
+                        <span>Grupo de mulheres com o mesmo objetivo</span>
+                      </li>
+                      <li className="flex items-center gap-2 text-gray-700">
+                        <CheckCircle2 className="text-primary shrink-0" size={20} />
+                        <span>Motivação constante para continuar firme</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="bg-white rounded-2xl shadow-lg p-8 border-l-4 border-amber-500"
+              >
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center shrink-0">
+                    <Heart className="text-amber-600" size={32} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-secondary mb-3">Disciplina Que Se Torna Hábito</h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      Em 6 semanas corridas, você não só emagrece — você <strong>transforma sua relação com a comida</strong> e 
+                      cria uma rotina saudável que dura para sempre.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <HelpCircle className="text-primary" size={20} />
+                <span className="text-primary font-semibold text-sm">PERGUNTAS FREQUENTES</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+                Tudo Que Você Precisa Saber
+              </h2>
+            </motion.div>
+
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-r from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <h3 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                  <Calendar className="text-primary" size={20} />
+                  Qual a duração do programa?
+                </h3>
+                <p className="text-gray-600 pl-7">
+                  <strong>6 semanas corridas</strong>, com acompanhamento semanal e suporte diário no grupo de WhatsApp.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.05 }}
+                className="bg-gradient-to-r from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <h3 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                  <Users className="text-primary" size={20} />
+                  Já faço consulta com você, posso participar?
+                </h3>
+                <p className="text-gray-600 pl-7">
+                  <strong>Com certeza! Você DEVE participar.</strong> O grupo dará um <strong>upgrade no seu plano alimentar</strong> e 
+                  acelera seus resultados com o suporte coletivo e desafios exclusivos.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="bg-gradient-to-r from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <h3 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                  <Trophy className="text-primary" size={20} />
+                  Quais resultados posso esperar?
+                </h3>
+                <p className="text-gray-600 pl-7">
+                  Os resultados variam de pessoa para pessoa, mas com disciplina e seguindo o plano, é possível:
+                </p>
+                <ul className="mt-3 pl-7 space-y-1 text-gray-600">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={16} />
+                    <span>Perder de 3 a 8 kg de forma saudável</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={16} />
+                    <span>Reduzir medidas e melhorar a composição corporal</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={16} />
+                    <span>Criar hábitos alimentares que duram para sempre</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+                className="bg-gradient-to-r from-primary/5 to-white border border-primary/10 rounded-2xl p-6"
+              >
+                <h3 className="font-bold text-secondary mb-2 flex items-center gap-2">
+                  <MessageCircle className="text-primary" size={20} />
+                  Como funciona o suporte?
+                </h3>
+                <p className="text-gray-600 pl-7">
+                  100% online pelo WhatsApp. Você receberá desafios diários, receitas exclusivas e terá acesso direto 
+                  à nutricionista Rafaelen e ao grupo de apoio.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What's Included Section */}
+      <section className="py-20 bg-gradient-to-br from-primary/5 to-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-2xl shadow-lg p-8 mb-12"
+            >
+              <h2 className="text-3xl font-bold text-secondary mb-6 text-center">
+                O que está incluído no <span className="text-primary">Missão FIT</span>
+              </h2>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-white rounded-2xl shadow-xl p-8 md:p-10"
+            >
+              {showSuccess ? (
+                <div className="text-center py-12">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <CheckCircle2 className="text-green-600" size={40} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-secondary mb-3">
+                    Pré-Inscrição Realizada! 🎉
+                  </h3>
+                  <div className="bg-primary/5 p-6 rounded-2xl mb-8 border border-primary/10">
+                    <p className="text-secondary font-semibold mb-4 text-lg">
+                      Último passo: Entre no grupo de inscritos para finalizar sua vaga!
+                    </p>
+                    <p className="text-gray-600 mb-6 text-sm leading-relaxed">
+                      Este é um grupo temporário para alinharmos o pagamento da entrada (R$ 150,00). 
+                      Assim que confirmado, eu te adicionarei pessoalmente ao <strong>Grupo VIP Missão FIT</strong>.
+                    </p>
+                    <a
+                      href={process.env.NEXT_PUBLIC_WHATSAPP_GROUP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-600 text-white rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all w-full justify-center"
+                    >
+                      <MessageCircle size={24} />
+                      ENTRAR NO GRUPO DE WHATSAPP
+                    </a>
+                  </div>
+                  <button
+                    onClick={() => setShowSuccess(false)}
+                    className="text-gray-500 hover:text-primary text-sm font-medium underline"
+                  >
+                    Fazer outra inscrição
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  {/* Nome Completo */}
+                  <div>
+                    <label htmlFor="nome_completo" className="block text-sm font-semibold text-secondary mb-2">
+                      Nome Completo *
+                    </label>
+                    <input
+                      type="text"
+                      id="nome_completo"
+                      {...register("nome_completo")}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                        errors.nome_completo ? "border-red-500" : "border-gray-300"
+                      }`}
+                      placeholder="Digite seu nome completo"
+                    />
+                    {errors.nome_completo && (
+                      <p className="text-red-500 text-sm mt-1">{errors.nome_completo.message}</p>
+                    )}
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-semibold text-secondary mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      {...register("email")}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                        errors.email ? "border-red-500" : "border-gray-300"
+                      }`}
+                      placeholder="seu@email.com"
+                    />
+                    {errors.email && (
+                      <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  {/* Telefone */}
+                  <div>
+                    <label htmlFor="telefone" className="block text-sm font-semibold text-secondary mb-2">
+                      Telefone/WhatsApp *
+                    </label>
+                    <input
+                      type="tel"
+                      id="telefone"
+                      {...register("telefone")}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                        errors.telefone ? "border-red-500" : "border-gray-300"
+                      }`}
+                      placeholder="(00) 00000-0000"
+                    />
+                    {errors.telefone && (
+                      <p className="text-red-500 text-sm mt-1">{errors.telefone.message}</p>
+                    )}
+                  </div>
+
+                  {/* Objetivo */}
+                  <div>
+                    <label htmlFor="objetivo" className="block text-sm font-semibold text-secondary mb-2">
+                      Qual seu objetivo com esse grupo? *
+                    </label>
+                    <select
+                      id="objetivo"
+                      {...register("objetivo")}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                        errors.objetivo ? "border-red-500" : "border-gray-300"
+                      }`}
+                    >
+                      <option value="">Selecione uma opção</option>
+                      <option value="emagrecimento">Emagrecimento</option>
+                      <option value="ganho-peso">Ganho de Peso</option>
+                      <option value="reeducacao">Reeducação Alimentar</option>
+                      <option value="bem-estar">Bem Estar e Saúde</option>
+                    </select>
+                    {errors.objetivo && (
+                      <p className="text-red-500 text-sm mt-1">{errors.objetivo.message}</p>
+                    )}
+                  </div>
+
+                  {/* Como Conheceu */}
+                  <div>
+                    <label htmlFor="como_conheceu" className="block text-sm font-semibold text-secondary mb-2">
+                      Como me conheceu? *
+                    </label>
+                    <select
+                      id="como_conheceu"
+                      {...register("como_conheceu")}
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all ${
+                        errors.como_conheceu ? "border-red-500" : "border-gray-300"
+                      }`}
+                    >
+                      <option value="">Selecione uma opção</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="indicacao">Indicação</option>
+                      <option value="google">Google</option>
+                      <option value="consultorio">Consultório Local</option>
+                    </select>
+                    {errors.como_conheceu && (
+                      <p className="text-red-500 text-sm mt-1">{errors.como_conheceu.message}</p>
+                    )}
+                  </div>
+
+                  {/* Urgency Message */}
+                  <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                    <div className="flex items-center gap-3">
+                      <Heart className="text-amber-600 shrink-0" size={24} />
+                      <p className="text-sm text-amber-900">
+                        <strong>Últimas vagas!</strong> Apenas {vagasRestantes} pessoas poderão participar desta turma.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={mutation.isPending}
+                    className="w-full px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {mutation.isPending ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        Enviando...
+                      </span>
+                    ) : (
+                      "Garantir Minha Vaga"
+                    )}
+                  </button>
+
+                  <p className="text-center text-sm text-gray-500">
+                    Ao enviar, você concorda em receber comunicações sobre o programa.
+                  </p>
+                </form>
+              )}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

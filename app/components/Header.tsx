@@ -1,23 +1,79 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "../hooks/useScroll";
 
 const NAV_LINKS = [
-  { name: "Início", href: "#" },
+  { name: "Início", href: "#hero" },
   { name: "Sobre", href: "#about" },
   { name: "Especialidades", href: "#specialties" },
   { name: "Depoimentos", href: "#testimonials" },
   { name: "Contato", href: "#contact" },
 ];
 
-export default function Header() {
+interface NavLink {
+  name: string;
+  href: string;
+}
+
+interface HeaderProps {
+  customLinks?: NavLink[];
+  customCTA?: {
+    text: string;
+    href: string;
+  };
+}
+
+export default function Header({ customLinks, customCTA }: HeaderProps = {}) {
   const isScrolled = useScroll(50);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Usa links customizados se fornecidos, senão usa os padrões
+  const navLinks = customLinks || NAV_LINKS;
+
+  // Função para navegar de forma inteligente
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+
+    // Se o href é apenas "#" ou vazio, navega para a home
+    if (href === "#" || href === "/") {
+      router.push("/");
+      return;
+    }
+
+    // Se é um link de âncora (#section)
+    if (href.startsWith("#")) {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      // Se não está na home, navega para a home com a hash
+      router.push(`/${href}`);
+    }
+  };
+
+  // Quando navegamos para a home com hash, espera carregar e rola
+  useEffect(() => {
+    if (pathname === "/" && window.location.hash) {
+      const hash = window.location.hash;
+      // Aguarda um frame para garantir que o DOM está pronto
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [pathname]);
 
   return (
     <header
@@ -44,23 +100,25 @@ export default function Header() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8" aria-label="Navegação Principal">
-          {NAV_LINKS.map((link) => (
-            <Link
+          {navLinks.map((link) => (
+            <a
               key={link.name}
               href={link.href}
-              className="text-secondary hover:text-primary transition-colors font-medium text-sm tracking-wide"
+              onClick={(e) => handleNavClick(e, link.href)}
+              className="text-secondary hover:text-primary transition-colors font-medium text-sm tracking-wide cursor-pointer"
             >
               {link.name}
-            </Link>
+            </a>
           ))}
           <a
-            href="https://wa.me/552175047225"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={customCTA?.href || "https://wa.me/552175047225"}
+            target={customCTA?.href ? undefined : "_blank"}
+            rel={customCTA?.href ? undefined : "noopener noreferrer"}
+            onClick={customCTA?.href ? (e) => handleNavClick(e, customCTA.href) : undefined}
             className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 active:translate-y-0"
-            aria-label="Agendar consulta no WhatsApp"
+            aria-label={customCTA?.text ? customCTA.text : "Agendar consulta no WhatsApp"}
           >
-            Agendar Consulta
+            {customCTA?.text || "Agendar Consulta"}
           </a>
         </nav>
 
@@ -85,24 +143,24 @@ export default function Header() {
             className="md:hidden bg-white border-t border-gray-100 shadow-lg overflow-hidden"
           >
             <nav className="flex flex-col p-6 space-y-4" aria-label="Navegação Mobile">
-              {NAV_LINKS.map((link) => (
-                <Link
+              {navLinks.map((link) => (
+                <a
                   key={link.name}
                   href={link.href}
-                  className="text-secondary hover:text-primary font-medium text-lg py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="text-secondary hover:text-primary font-medium text-lg py-2 cursor-pointer"
                 >
                   {link.name}
-                </Link>
+                </a>
               ))}
               <a
-                href="https://wa.me/552175047225"
-                target="_blank"
-                rel="noopener noreferrer"
+                href={customCTA?.href || "https://wa.me/552175047225"}
+                target={customCTA?.href ? undefined : "_blank"}
+                rel={customCTA?.href ? undefined : "noopener noreferrer"}
+                onClick={customCTA?.href ? (e) => handleNavClick(e, customCTA.href) : undefined}
                 className="bg-primary hover:bg-primary-dark text-center text-white px-6 py-3 rounded-full font-semibold shadow-md mt-2"
-                onClick={() => setIsMobileMenuOpen(false)}
               >
-                Agendar Consulta
+                {customCTA?.text || "Agendar Consulta"}
               </a>
             </nav>
           </motion.div>

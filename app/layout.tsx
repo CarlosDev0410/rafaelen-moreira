@@ -17,9 +17,12 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://rafaelenmoreira.com.br"),
   title: "Rafaelen Moreira | Nutricionista",
   description: "Especialista em Saúde, Emagrecimento e Bem Estar.",
 };
+
+import Providers from "./providers";
 
 export default function RootLayout({
   children,
@@ -28,10 +31,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body
-        className={`${montserrat.variable} ${playfair.variable} antialiased`}
-      >
-        {children}
+      <body tabIndex={-1} className={`${montserrat.variable} ${playfair.variable} antialiased font-sans`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -45,7 +45,7 @@ export default function AboutPage() {
                 Olá! Sou Rafaelen Moreira, nutricionista apaixonada por transformar vidas através da alimentação.
               </p>
               <p>
-                Minha jornada na nutrição começou com o desejo de entender como os alimentos podem ser nossos maiores aliados na busca por saúde e longevidade.
+                Sou formada pela Unigranrio desde 2018 e pós-graduanda em Nutrição Clínica. Minha jornada na nutrição começou com o desejo de entender como os alimentos podem ser nossos maiores aliados na busca por saúde e longevidade.
               </p>
               <p>
                 Não acredito em dietas restritivas que excluem tudo o que você gosta. Meu método é baseado no equilíbrio, na reeducação alimentar e na individualidade biológica.
@@ -71,7 +71,7 @@ export default function AboutPage() {
                 </li>
                 <li className="flex gap-3">
                   <Check className="text-primary w-5 h-5 shrink-0 mt-1" />
-                  <span>Plano alimentar personalizado entregue no aplicativo.</span>
+                  <span>Plano alimentar personalizado entregue no mesmo dia.</span>
                 </li>
                 <li className="flex gap-3">
                   <Check className="text-primary w-5 h-5 shrink-0 mt-1" />
@@ -87,7 +87,7 @@ export default function AboutPage() {
                 rel="noopener noreferrer"
                 className="inline-block bg-primary hover:bg-primary-dark text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all"
               >
-                Agendar Consulta
+                Vamos conversar?
               </a>
             </div>
          </div>
