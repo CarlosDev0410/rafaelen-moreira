@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Users, TrendingDown, Sparkles } from "lucide-react";
+import { Users, Sparkles, Heart } from "lucide-react";
 
 export default function Hero() {
   const vagasRestantes = 15;
@@ -108,21 +108,21 @@ export default function Hero() {
 
             {/* Subheadline */}
             <p className="text-lg md:text-xl text-secondary-light leading-relaxed text-center">
-              Participe de desafios diariamente com acompanhamento exclusivo da nutri.
+              Participe de uma mudança real no seu estilo de vida. Com desafios semanais, que farão mudar sua maneira de se alimentar, resultando na promoção da sua saúde.
             </p>
 
             {/* Key Benefits */}
-            <div className="space-y-1 pt-1">
+            <div className="space-y-3 pt-1">
               <div className="flex items-start gap-3">
-                <div className="mt-1 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                  <TrendingDown size={14} className="text-primary" />
+                <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                  <Heart size={14} className="text-primary" />
                 </div>
                 <p className="text-secondary-light">
-                  <strong className="text-secondary">Perca peso de forma saudável</strong> sem dietas restritivas
+                  <strong className="text-secondary">Encontros presenciais e on-line.</strong>
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <div className="mt-1 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
                   <Users size={14} className="text-primary" />
                 </div>
                 <p className="text-secondary-light">
@@ -130,11 +130,11 @@ export default function Hero() {
                 </p>
               </div>
               <div className="flex items-start gap-3">
-                <div className="mt-1 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
                   <Sparkles size={14} className="text-primary" />
                 </div>
                 <p className="text-secondary-light">
-                  <strong className="text-secondary">Desafios semanais</strong> e receitas saudáveis toda semana
+                  <strong className="text-secondary">Desafios semanais</strong>
                 </p>
               </div>
             </div>

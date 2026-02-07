@@ -99,8 +99,7 @@ export default function FaqSection() {
                 Como funciona o suporte?
               </h3>
               <p className="text-gray-600 pl-7">
-                100% online pelo WhatsApp. Você receberá desafios semanais e terá acesso direto 
-                à nutricionista Rafaelen e ao grupo de apoio.
+O suporte é feito através de <strong>encontros presenciais e on-line</strong> em grupos pequenos para tirar todas as suas dúvidas, somados a <strong>avaliação antropométrica e bioimpedância</strong> para monitorar seus resultados com precisão.
               </p>
             </motion.div>
           </div>

@@ -40,7 +40,7 @@ export default function TargetAudienceSection() {
                 </div>
                 <div>
                   <h3 className="font-bold text-secondary mb-2">Emagrecer de Forma Saudável</h3>
-                  <p className="text-gray-600 text-sm">Sem dietas radicais, sem sofrimento. Apenas resultados sustentáveis e duradouros.</p>
+                  <p className="text-gray-600 text-sm">Com reeducação alimentar e desafios que te farão alcançar seus objetos de forma saudável e eficaz!</p>
                 </div>
               </div>
             </motion.div>

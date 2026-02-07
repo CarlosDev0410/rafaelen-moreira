@@ -8,9 +8,11 @@ import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2, Heart, MessageCircle } from "lucide-react";
 import { inscricaoSchema, type InscricaoInput } from "@/lib/schemas";
 import { registrarInscricao } from "@/app/actions/inscricoes";
+import GroupPoliciesModal from "./GroupPoliciesModal";
 
 export default function RegistrationForm() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showPolicies, setShowPolicies] = useState(false);
   const vagasRestantes = 15;
 
   const {
@@ -236,11 +238,26 @@ export default function RegistrationForm() {
                 <p className="text-center text-sm text-gray-500">
                   Ao enviar, você concorda em receber comunicações sobre o programa.
                 </p>
+
+                <div className="text-center pt-2">
+                    <button
+                        type="button"
+                        onClick={() => setShowPolicies(true)}
+                        className="text-xs text-gray-400 hover:text-primary underline transition-colors"
+                    >
+                        Ver Políticas e Termos do Grupo
+                    </button>
+                </div>
               </form>
             )}
           </motion.div>
         </div>
       </div>
+      
+      <GroupPoliciesModal 
+        isOpen={showPolicies} 
+        onClose={() => setShowPolicies(false)} 
+      />
     </section>
   );
 }

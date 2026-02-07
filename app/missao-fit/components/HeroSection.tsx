@@ -16,7 +16,7 @@ export default function HeroSection() {
           src="/bg-missao-fit.png"
           alt="Background Missão FIT"
           fill
-          className="object-cover opacity-70"
+          className="object-cover opacity-40"
           priority
         />
         <div className="absolute inset-0 " />
@@ -46,7 +46,7 @@ export default function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-4 drop-shadow-sm">
               Grupo de emagrecimento Missão <span className="text-primary italic">FIT</span>
             </h1>
-            <p className="text-lg md:text-xl text-secondary-light max-w-2xl mx-auto mb-6">
+            <p className="text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-6">
               6 semanas para transformar seu corpo e criar hábitos saudáveis que duram para sempre
             </p>
             
@@ -84,8 +84,8 @@ export default function HeroSection() {
               <div className="bg-primary/10 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3">
                 <Clock className="text-primary" size={24} />
               </div>
-              <p className="font-bold text-lg text-secondary">100% Online</p>
-              <p className="text-xs text-gray-600 uppercase tracking-wide font-medium">Pelo WhatsApp</p>
+              <p className="font-bold text-lg text-secondary">Online e presencial</p>
+              <p className="text-xs text-gray-600 uppercase tracking-wide font-medium">Pelo WhatsApp com encontros presenciais</p>
             </div>
           </motion.div>
         </div>
